@@ -79,8 +79,8 @@ public RestTemplate restTemplate() {
 #### 提供
 
 - 当前登录账号信息存储在 cookie 中，cookie 内容如下：
-  - `"id"`，存储用户唯一id
-  - `"email"`，存储作为username的用户邮箱
+  - `"id"`，存储用户唯一 id
+  - `"email"`，存储作为 username 的用户邮箱
   - `"password"`，存储用户登录密码
 
 - `/assets/js/CookieOperations.js`内的`cookieOperations`中，提供了保存 cookie ，获取 cookie ，清除 cookie 的三个方法
