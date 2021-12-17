@@ -6,12 +6,12 @@ My part in OfferanOffer project: log-in service and process service.
 
 ## 后端
 
-### Eureka注册中心
+### Eureka 注册中心
 
 **当前端口：10086**
 
 #### 需要的配置
-- 项目建立时勾选eureka server，或添加相应依赖
+- 项目建立时勾选 eureka server ，或添加相应依赖
 - 配置文件如下：
 ```java
 eureka:
@@ -38,7 +38,7 @@ public RestTemplate restTemplate() {
 #### 用户表属性
 以自增为方式自动生成的唯一主键`id`
 
-填写email作为账号名使用的`username`
+填写 email 作为账号名使用的`username`
 
 账号密码`password`
 
@@ -59,15 +59,15 @@ public RestTemplate restTemplate() {
   - 域名：`/system/add_apply`
   - 方式： `post`
   - 参数：
-    - `String id`，代表用户id
-    - `String resumeId`，代表用户投递简历的id，以resumeId作为表唯一主键
+    - `String id`，代表用户 id
+    - `String resumeId`，代表用户投递简历的 id ，以 resumeId 作为表唯一主键
     
 - 在发送通知后更新流程当前状态
   - 域名：`/hr/update_status`
   - 方式： `post`
   - 参数：
-    - `String id`，代表用户id
-    - `String resumeId`，代表用户投递简历的id，以resumeId作为表唯一主键
+    - `String id`，代表用户 id
+    - `String resumeId`，代表用户投递简历的 id ，以 resumeId 作为表唯一主键
     - `String status`，代表目标状态，发送面试通知后更新为`"interview"`
 
 #### 需要的接口
@@ -78,12 +78,12 @@ public RestTemplate restTemplate() {
 
 #### 提供
 
-- 当前登录账号信息存储在cookie中，cookie内容如下：
+- 当前登录账号信息存储在 cookie 中，cookie 内容如下：
   - `"id"`，存储用户唯一id
   - `"email"`，存储作为username的用户邮箱
   - `"password"`，存储用户登录密码
 
-- `/assets/js/CookieOperations.js`内的`cookieOperations`中，提供了保存cookie，获取cookie，清除cookie的三个方法
+- `/assets/js/CookieOperations.js`内的`cookieOperations`中，提供了保存 cookie ，获取 cookie ，清除 cookie 的三个方法
 ```javascript
 
 export default {
@@ -112,9 +112,9 @@ export default {
 }
 ```
 - `/assets/js/Cookie.js`内的`cookieMethods`中，提供
-  - `getCurrentId`，无参数，返回当前登录中用户的id
-  - `getCurrentIdentity`，`async`同步函数，需要参数`id`，返回特定id用户的身份
+  - `getCurrentId`，无参数，返回当前登录中用户的 id
+  - `getCurrentIdentity`，`async`同步函数，需要参数`id`，返回特定 id 用户的身份
 
 #### 需要
-- 获得要查看的简历的id的方式，设想是存储在`sessionStorage`内，也可以换其他方式，但需要提供对应获取函数
-- 以`"hr"`身份登录时，获取要查看的简历所对应的申请者的id的方式，设想是存储在`sessionStorage`中，也可以换其他方式，但需要提供对应获取函数
+- 获得要查看的简历的 id 的方式，设想是存储在`sessionStorage`内，也可以换其他方式，但需要提供对应获取函数
+- 以`"hr"`身份登录时，获取要查看的简历所对应的申请者的 id 的方式，设想是存储在`sessionStorage`中，也可以换其他方式，但需要提供对应获取函数
