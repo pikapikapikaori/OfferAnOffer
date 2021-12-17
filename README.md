@@ -8,7 +8,7 @@ My part in OfferanOffer project: log-in service and process service.
 
 ### Eureka注册中心
 
-*当前端口：10086*
+**当前端口：10086**
 
 #### 需要的配置
 - 项目建立时勾选eureka server，或添加相应依赖
@@ -33,7 +33,7 @@ public RestTemplate restTemplate() {
 
 ### 登录模块
 
-*当前端口：8081*
+**当前端口：8081**
 
 #### 用户表属性
 以自增为方式自动生成的唯一主键`id`
@@ -49,7 +49,7 @@ public RestTemplate restTemplate() {
 
 ### 流程模块
 
-*当前端口：8082*
+**当前端口：8082**
 
 #### 提供的接口
 
