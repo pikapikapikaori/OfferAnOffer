@@ -83,7 +83,7 @@ public RestTemplate restTemplate() {
   - `"email"`，存储作为username的用户邮箱
   - `"password"`，存储用户登录密码
 
-- /assets/js/CookieOperations.js内的cookieOperations中，提供了保存cookie，获取cookie，清除cookie的三个方法
+- `/assets/js/CookieOperations.js`内的`cookieOperations`中，提供了保存cookie，获取cookie，清除cookie的三个方法
 ```javascript
 
 export default {
@@ -111,7 +111,7 @@ export default {
   }
 }
 ```
-- /assets/js/Cookie.js内的cookieMethods中，提供
+- `/assets/js/Cookie.js`内的`cookieMethods`中，提供
   - `getCurrentId`，无参数，返回当前登录中用户的id
   - `getCurrentIdentity`，`async`同步函数，需要参数`id`，返回特定id用户的身份
 
