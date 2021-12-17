@@ -22,12 +22,12 @@ eureka:
 - 启动类
   - 启动类中添加注解`@EnableEurekaClient`
   - 类内添加属性：
-  ```java
+```java
 @Bean
 public RestTemplate restTemplate() {
     return new RestTemplate();
 }
-  ```
+```
 - 控制器添加注解`@RestController`
 - 需要调用其他服务的类内添加`RestTemplate restTemplate`
 
