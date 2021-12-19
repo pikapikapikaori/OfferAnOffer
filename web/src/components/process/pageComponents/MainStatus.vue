@@ -94,10 +94,12 @@ export default {
 
       const axios = require('axios')
       await axios.post(
-        this.constant.data().processBaseUrl + '/hr/update_status', {
-          id: this.cookieutils.cookieMethods.getTargetId(),
-          resumeId: this.cookieutils.cookieMethods.getTargetResumeId(),
-          status: this.formData.tmpSta
+        this.constant.data().processBaseUrl + '/hr/update_status', null, {
+          params: {
+            id: this.cookieutils.cookieMethods.getTargetId(),
+            resumeId: this.cookieutils.cookieMethods.getTargetResumeId(),
+            status: this.formData.tmpSta
+          }
         }
       ).then(
         (res) => {

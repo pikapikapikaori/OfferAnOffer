@@ -74,12 +74,12 @@ export default {
         if (valid) {
           this.logining = true
 
-          await this.login(this.ruleForm.username, this.ruleForm.password);
+          await this.login(this.ruleForm.username, this.ruleForm.password)
 
           if (this.targetInfo.code === 1) {
             this.logining = false
             this.cookieopera.cookieOperations.setCookie(this.targetInfo.id, this.targetInfo.email, this.targetInfo.password, 1)
-            this.$router.push({path: '/'})
+            await this.$router.push({path: '/'})
           } else {
             this.logining = false
             this.$notify.error({

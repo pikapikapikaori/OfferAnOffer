@@ -47,6 +47,20 @@ class UserControllerTest {
     }
 
     @Test
-    void register_add_user() {
+    void register_add_user() throws Exception {
+        String resstr = mockMvc.perform(
+                        post("/auth/register_add_user")
+                                .param("id", "3")
+                                .param("email", "testregister@test.com")
+                                .param("identity", "interviewee")
+                )
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn().getResponse().getContentAsString();
+
+        JSONObject res = JSON.parseObject(resstr);
+
+        System.out.println(res);
+        assertEquals(1, res.getInteger("code"));
     }
 }

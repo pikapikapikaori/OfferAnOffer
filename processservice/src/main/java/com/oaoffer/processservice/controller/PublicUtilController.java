@@ -1,7 +1,7 @@
 package com.oaoffer.processservice.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.oaoffer.processservice.constant.Constant;
+import com.oaoffer.processservice.Constant.Constant;
 import com.oaoffer.processservice.service.PublicUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

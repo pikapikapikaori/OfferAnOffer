@@ -8,10 +8,10 @@ spring:
     username: root
     password: password
     url: jdbc:mysql://localhost:3306/login?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    jpa:
-      hibernate:
-        naming:
-          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
 eureka:
   client:

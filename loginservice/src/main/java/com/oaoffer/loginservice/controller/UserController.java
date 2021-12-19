@@ -24,6 +24,8 @@ public class UserController {
 
     @PostMapping("/register")
     public JSONObject register(String email, String password) {
+        System.out.println(email);
+
         JSONObject obj = userService.register(email, password);
 
         register_add_user(obj.getString("id"), obj.getString("email"), obj.getString("identity"));

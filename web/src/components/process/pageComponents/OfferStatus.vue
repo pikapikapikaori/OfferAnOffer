@@ -35,8 +35,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: 'OfferStatus',
   data () {
@@ -88,10 +86,12 @@ export default {
 
       const axios = require('axios')
       await axios.post(
-        this.constant.data().processBaseUrl + '/hr/update_evaluation', {
-          id: this.cookieutils.cookieMethods.getTargetId(),
-          resumeId: this.cookieutils.cookieMethods.getTargetResumeId(),
-          evaluation: this.formData.tmpeva
+        this.constant.data().processBaseUrl + '/hr/update_evaluation', null, {
+          params: {
+            id: this.cookieutils.cookieMethods.getTargetId(),
+            resumeId: this.cookieutils.cookieMethods.getTargetResumeId(),
+            evaluation: this.formData.tmpeva
+          }
         }
       ).then(
         (res) => {

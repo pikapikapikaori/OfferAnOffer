@@ -77,9 +77,11 @@ export default {
       const axios = require('axios')
 
       let res = await axios.post(
-        this.constant.data().loginBaseUrl + '/auth/register', {
-          email: email,
-          password: password
+        this.constant.data().loginBaseUrl + '/auth/register', null, {
+          params: {
+            email: email,
+            password: password
+          }
         }
       )
 
@@ -90,12 +92,12 @@ export default {
         if (valid) {
           this.logining = true
 
-          await this.register(this.ruleForm.username, this.ruleForm.password);
+          await this.register(this.ruleForm.username, this.ruleForm.password)
 
           if (this.targetInfo.code === 1) {
             this.logining = false
             this.cookieopera.cookieOperations.setCookie(this.targetInfo.id, this.targetInfo.email, this.targetInfo.password, 1)
-            this.$router.push({path: '/'})
+            await this.$router.push({path: '/'})
           } else {
             this.logining = false
             this.$notify.error({
