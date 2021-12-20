@@ -1,0 +1,12 @@
+DROP DATABASE IF EXISTS login;
+CREATE DATABASE login;
+
+USE login;
+
+DROP TABLE IF EXISTS User;
+CREATE TABLE User (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255),
+    password VARCHAR(255),
+    identity VARCHAR(255)
+);
