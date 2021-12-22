@@ -10,11 +10,11 @@ spring:
     url: jdbc:mysql://localhost:3306/login?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
   sql:
     init:
-      mode: never
+      mode: always
       username: root
       password: password
       schema-locations:
-        - classpath: database/login_initialize.sql
+        - classpath:database/login_initialize.sql
   jpa:
     hibernate:
       naming:
