@@ -6,13 +6,13 @@ spring:
     name: process-service
   datasource:
     username: root
-    password: password
+    password: grh233..
     url: jdbc:mysql://localhost:3306/process?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
   sql:
     init:
       mode: always
       username: root
-      password: password
+      password: grh233..
       schema-locations:
         - classpath:database/process_initialize.sql
   jpa:
