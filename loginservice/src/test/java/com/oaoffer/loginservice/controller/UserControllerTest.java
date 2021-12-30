@@ -61,7 +61,7 @@ class UserControllerTest {
         JSONObject res = JSON.parseObject(resstr);
 
         System.out.println(res);
-        assertEquals(1, res.getInteger("code"));
+        assertEquals(0, res.getInteger("code"));
     }
 
     @Test
