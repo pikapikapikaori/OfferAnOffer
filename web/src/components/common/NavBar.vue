@@ -14,7 +14,7 @@
       流程
     </el-menu-item>
     <el-menu-item @click="logout">
-      点击这里退出
+      点击这里重新登录
     </el-menu-item>
   </el-menu>
 </template>
@@ -27,7 +27,7 @@ export default {
       this.cookieopera.cookieOperations.clearCookie()
       sessionStorage.clear()
       localStorage.clear()
-      this.$router.push('/')
+      this.$router.push('/auth/login')
     }
   }
 }

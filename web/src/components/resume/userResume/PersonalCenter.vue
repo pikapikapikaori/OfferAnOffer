@@ -96,9 +96,15 @@ export default {
   },
   created: async function() {
 
+    this.identity = await this.cookieutils.cookieMethods.getCurrentIdentity(this.cookieutils.cookieMethods.getCurrentId())
+
     console.log(this.cookieutils.cookieMethods.getCurrentId())
     if (this.cookieutils.cookieMethods.getCurrentId() === '') {
       await this.$router.push('/auth/login')
+    }
+
+    if (this.identity === 'hr') {
+      await this.$router.push('/user/hrpersonalcenter')
     }
 
     const axios = require('axios')
