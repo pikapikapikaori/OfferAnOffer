@@ -39,7 +39,7 @@ class SystemUtilControllerTest {
 
         JSONObject res = JSON.parseObject(resstr);
 
-        assertEquals(0, res.getInteger("code"));
+        assertEquals(1, res.getInteger("code"));
     }
 
     @Test

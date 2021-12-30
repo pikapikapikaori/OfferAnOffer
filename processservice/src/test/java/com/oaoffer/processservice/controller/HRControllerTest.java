@@ -40,7 +40,7 @@ class HRControllerTest {
 
         JSONObject res = JSON.parseObject(resstr);
 
-        assertEquals(1, res.getInteger("code"));
+        assertEquals(0, res.getInteger("code"));
     }
 
 }

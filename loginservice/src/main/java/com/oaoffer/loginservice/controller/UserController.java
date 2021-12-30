@@ -33,7 +33,7 @@ public class UserController {
         return obj;
     }
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public JSONObject login(String email, String password) {
         return userService.login(email, password);
     }
