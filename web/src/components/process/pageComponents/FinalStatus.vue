@@ -82,7 +82,7 @@ export default {
       await axios.post(
         this.constant.data().processBaseUrl + '/hr/update_offerStatus', null, {
           params: {
-            id: this.cookieutils.cookieMethods.getTargetId(),
+            id: this.cookieutils.cookieMethods.getTargetId(this.identity),
             resumeId: this.cookieutils.cookieMethods.getTargetResumeId(),
             offerStatus: this.formData.tmpSta
           }

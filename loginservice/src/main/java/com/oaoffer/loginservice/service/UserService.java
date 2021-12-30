@@ -79,23 +79,33 @@ public class UserService {
 
         int resU;
 
-        if(Objects.equals(targetUser.getEmail(), email) && Objects.equals(targetUser.getPassword(), password)) {
-            resU = 1; // 成功登陆码
-            obj.put("code", resU);
-            obj.put("id", Integer.toString(targetUser.getId()));
-            obj.put("email", targetUser.getEmail());
-            obj.put("password", targetUser.getPassword());
-            obj.put("identity", targetUser.getIdentity());
-
-        }
-        else {
+        if(targetUser == null) {
             resU = 0;
             obj.put("code", resU);
             obj.put("id", "");
             obj.put("email", "");
             obj.put("password", "");
             obj.put("identity", "");
+        }
+        else {
+            if(Objects.equals(targetUser.getEmail(), email) && Objects.equals(targetUser.getPassword(), password)) {
+                resU = 1; // 成功登陆码
+                obj.put("code", resU);
+                obj.put("id", Integer.toString(targetUser.getId()));
+                obj.put("email", targetUser.getEmail());
+                obj.put("password", targetUser.getPassword());
+                obj.put("identity", targetUser.getIdentity());
 
+            }
+            else {
+                resU = 0;
+                obj.put("code", resU);
+                obj.put("id", "");
+                obj.put("email", "");
+                obj.put("password", "");
+                obj.put("identity", "");
+
+            }
         }
 
         return obj;

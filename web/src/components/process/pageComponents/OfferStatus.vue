@@ -67,7 +67,7 @@ export default {
       axios.get(
         this.constant.data().processBaseUrl + '/public/get_evaluation', {
           params: {
-            id: this.cookieutils.cookieMethods.getTargetId(),
+            id: this.cookieutils.cookieMethods.getTargetId(this.identity),
             resumeId: this.cookieutils.cookieMethods.getTargetResumeId()
           }
         }
@@ -88,7 +88,7 @@ export default {
       await axios.post(
         this.constant.data().processBaseUrl + '/hr/update_evaluation', null, {
           params: {
-            id: this.cookieutils.cookieMethods.getTargetId(),
+            id: this.cookieutils.cookieMethods.getTargetId(this.identity),
             resumeId: this.cookieutils.cookieMethods.getTargetResumeId(),
             evaluation: this.formData.tmpeva
           }
