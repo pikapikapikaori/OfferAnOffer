@@ -10,12 +10,26 @@
     <el-menu-item index="/user/process">
       流程
     </el-menu-item>
+    <el-menu-item index="/user/process">
+      流程
+    </el-menu-item>
+    <el-menu-item @click="logout">
+      点击这里退出
+    </el-menu-item>
   </el-menu>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  methods: {
+    logout () {
+      this.cookieopera.cookieOperations.clearCookie()
+      sessionStorage.clear()
+      localStorage.clear()
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 

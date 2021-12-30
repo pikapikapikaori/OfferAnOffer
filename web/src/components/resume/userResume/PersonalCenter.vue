@@ -80,7 +80,6 @@ import NavBar from "../../common/NavBar";
 
 export default {
   name: 'PersonalCenter',
-  components: {PersonalCenterNavi, PersonalCenterHeader},
   data() {
     return {
       tableData: [],
@@ -118,7 +117,7 @@ export default {
       }
     )
   },
-  compoents: {
+  components: {
     PersonalCenterNavi,
     PersonalCenterHeader,
     NavBar
