@@ -31,12 +31,8 @@ public class ResumeController {
 
 
     @PostMapping("/add_resume")
-    public JSONObject add_resume(String id, byte[] resumeContent, String jobId) {
-        JSONObject obj = resumeService.add_resume(id, resumeContent, jobId);
-
-        JSONObject applyObj = add_apply_on_resume(id, obj.getString("resumeId"));
-
-        return obj;
+    public JSONObject add_resume(String id, String jobId, String jobName, String resumeName, String name) {
+        return resumeService.add_resume(id, jobId, jobName, resumeName,name);
     }
 
     @PostMapping("/add_resume_name")
@@ -68,6 +64,7 @@ public class ResumeController {
         JSONArray obj = resumeService.get_hr_personal_center_data();
         return obj;
     }
+
 
 
 }

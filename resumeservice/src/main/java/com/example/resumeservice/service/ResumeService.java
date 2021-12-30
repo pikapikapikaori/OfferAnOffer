@@ -75,7 +75,7 @@ public class ResumeService {
 
     }
 
-    public JSONObject add_resume(String id, byte[] resumeContent, String jobId){
+    public JSONObject add_resume(String id, String jobId, String jobName, String resumeName, String name){
         JSONObject obj = new JSONObject();
 
         //检测是否存在
@@ -89,17 +89,55 @@ public class ResumeService {
             Resume newResume = new Resume();
             newResume.setId(id);
             newResume.setJobId(jobId);
-            newResume.setResumeContent(resumeContent);
+            newResume.setJobName(jobName);
+            newResume.setResumeName(resumeName);
+            newResume.setName(name);
             Resume res = resumeRepository.saveAndFlush(newResume);
 
-            obj.put("code", resR);
-            obj.put("resumeId", res.getResumeId());
             obj.put("id",res.getId());
             obj.put("jobId",res.getJobId());
+            obj.put("jobName",res.getJobName());
+            obj.put("resumeName",res.getResumeName());
+            obj.put("name",res.getName());
+
+            obj.put("code", resR);
+
+
             //obj.put("resumeContent",res.getResumeContent());
         }
-        return obj;
+        else {
+            if (Objects.equals(targetResume.getId(), id) && Objects.equals(targetResume.getJobId(), jobId)) {
+                resR = 0;
 
+                obj.put("id","");
+                obj.put("jobId","");
+                obj.put("jobName","");
+                obj.put("resumeName","");
+                obj.put("name","");
+
+                obj.put("code", resR);
+            }
+            else {
+                resR = 1;
+
+                Resume newResume = new Resume();
+                newResume.setId(id);
+                newResume.setJobId(jobId);
+                newResume.setJobName(jobName);
+                newResume.setResumeName(resumeName);
+                newResume.setName(name);
+                Resume res = resumeRepository.saveAndFlush(newResume);
+
+                obj.put("id",res.getId());
+                obj.put("jobId",res.getJobId());
+                obj.put("jobName",res.getJobName());
+                obj.put("resumeName",res.getResumeName());
+                obj.put("name",res.getName());
+
+                obj.put("code", resR);
+            }
+        }
+        return obj;
 
 
     }

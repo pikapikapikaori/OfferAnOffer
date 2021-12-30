@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/eureka/eureka.iml" filepath="$PROJECT_DIR$/eureka/eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/loginservice/loginservice.iml" filepath="$PROJECT_DIR$/loginservice/loginservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/processservice/processservice.iml" filepath="$PROJECT_DIR$/processservice/processservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../resumeservice/resumeservice.iml" filepath="$PROJECT_DIR$/../resumeservice/resumeservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
     </modules>
   </component>

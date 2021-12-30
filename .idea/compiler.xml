@@ -7,15 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="resumeservice" />
+        <module name="loginservice" />
         <module name="processservice" />
         <module name="eureka" />
-        <module name="loginservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eureka" target="11" />
       <module name="loginservice" target="11" />
       <module name="processservice" target="11" />
+      <module name="resumeservice" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -23,6 +25,7 @@
       <module name="eureka" options="-parameters" />
       <module name="loginservice" options="-parameters" />
       <module name="processservice" options="-parameters" />
+      <module name="resumeservice" options="-parameters" />
     </option>
   </component>
 </project>

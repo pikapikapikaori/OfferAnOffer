@@ -4,5 +4,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Constant {
-    public static final String baseProcessUrl = "http://localhost:8082";
+    public static final String baseProcessUrl = "http://150.158.95.209:8082";
 }

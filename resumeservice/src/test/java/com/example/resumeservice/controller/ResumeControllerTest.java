@@ -71,6 +71,24 @@ class ResumeControllerTest {
     }
 
     @Test
+    void add_resume_test() throws Exception {
+        String resstr = mockMvc.perform(
+                post("/user/upload-resume/add_resume")
+                        .param("id", "88")
+                        .param("jobId", "298")
+                        .param("jobName","测试")
+                        .param("resumeName","简历.pdf")
+                        .param("name","测试人")
+        )
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn().getResponse().getContentAsString();
+        JSONObject res = JSON.parseObject(resstr);
+
+        System.out.println(res);
+    }
+
+    @Test
     void update_resumeContent() {
 
     }
