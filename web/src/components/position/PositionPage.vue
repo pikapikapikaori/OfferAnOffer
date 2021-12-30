@@ -63,6 +63,14 @@
             clearable
           ></el-cascader>
         </el-col>
+        <el-col :span="8">
+          <el-button
+            type="primary"
+            v-show="identity === 'hr'"
+            @click="postPositionDialogVisible = true"
+            >发布岗位</el-button
+          >
+        </el-col>
       </el-row>
     </el-main>
     <el-main>
@@ -101,6 +109,7 @@
     </el-main>
 
     <el-footer> </el-footer>
+
     <el-dialog
       :title="dialogItem.title"
       :visible.sync="dialogVisible"
@@ -121,8 +130,90 @@
       <div class="description">{{ dialogItem.description }}</div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">关闭</el-button>
-        <el-button type="primary" @click="handleDialogConfirmButton"
-          >投递简历</el-button
+        <el-button type="primary">投递简历</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog
+      title="发布职位"
+      :visible.sync="postPositionDialogVisible"
+      width="80%"
+      :before-close="handleClose"
+    >
+      <el-form :model="newPositionForm" label-width="120px">
+        <el-form-item label="岗位名称">
+          <el-input v-model="newPositionForm.title"></el-input>
+        </el-form-item>
+
+        <el-form-item label="工作经验">
+          <el-cascader
+            v-model="newPositionForm.workYearId"
+            placeholder="请选择工作经验"
+            :props="cascaderProps"
+            :options="workYearOptions"
+            @change="handlePicklistChange"
+            collapse-tags
+            clearable
+          ></el-cascader>
+        </el-form-item>
+
+        <el-form-item label="学历">
+          <el-cascader
+            v-model="newPositionForm.degreeId"
+            placeholder="请选择学历"
+            :props="cascaderProps"
+            :options="degreeOptions"
+            @change="handlePicklistChange"
+            collapse-tags
+            clearable
+          ></el-cascader>
+        </el-form-item>
+
+        <el-form-item label="岗位类别">
+          <el-cascader
+            v-model="newPositionForm.jobCategoryId"
+            placeholder="请选择岗位"
+            :props="cascaderProps"
+            :options="jobCategoryOptions"
+            @change="handlePicklistChange"
+            collapse-tags
+            clearable
+          ></el-cascader>
+        </el-form-item>
+
+        <el-form-item label="工作地点">
+          <el-cascader
+            v-model="newPositionForm.locationId"
+            placeholder="请选择工作地点"
+            :props="cascaderProps"
+            :options="locationOptions"
+            @change="handlePicklistChange"
+            collapse-tags
+            clearable
+          ></el-cascader>
+        </el-form-item>
+
+        <el-form-item label="需求部门">
+          <el-cascader
+            v-model="newPositionForm.departmentId"
+            placeholder="请选择目标部门"
+            :props="cascaderProps"
+            :options="departmentOptions"
+            @change="handlePicklistChange"
+            collapse-tags
+            clearable
+          ></el-cascader>
+        </el-form-item>
+
+        <el-form-item label="具体描述">
+          <el-input type="textarea" v-model="newPositionForm.desc"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="postPositionDialogVisible = false">关闭</el-button>
+        <el-button type="primary" @click="handlePostPositionCommit"
+          >提交</el-button
         >
       </span>
     </el-dialog>
@@ -141,7 +232,9 @@ export default {
   },
   data() {
     return {
+      identity: "",
       dialogVisible: false,
+      postPositionDialogVisible: false,
       dialogItem: {
         title: "",
         description: "",
@@ -159,6 +252,15 @@ export default {
         }
       },
       jobs: [],
+      newPositionForm: {
+        title: "",
+        desc: "",
+        workYearId: 0,
+        degreeId: 0,
+        departmentId: 0,
+        locationId: 0,
+        jobCategoryId: 0
+      },
       originalJobs: [],
       workYearValue: [],
       workYearOptions: [],
@@ -271,6 +373,9 @@ export default {
     );
 
     await Promise.all(promises);
+    this.identity = await this.cookieutils.cookieMethods.getCurrentIdentity(
+      this.cookieutils.cookieMethods.getCurrentId()
+    );
   },
   methods: {
     handleClose: function(done) {
@@ -290,34 +395,79 @@ export default {
       this.jobs = this.originalJobs
         .filter(
           job =>
-            !this.workYearValue || this.workYearValue.length === 0 ||
+            !this.workYearValue ||
+            this.workYearValue.length === 0 ||
             (this.workYearValue.length > 0 &&
               this.workYearValue.flat().indexOf(job.workYear.id) >= 0)
         )
         .filter(
           job =>
-            !this.degreeValue || this.degreeValue.length === 0 ||
+            !this.degreeValue ||
+            this.degreeValue.length === 0 ||
             (this.degreeValue.length > 0 &&
               this.degreeValue.flat().indexOf(job.degree.id) >= 0)
         )
         .filter(
           job =>
-            !this.jobCategoryValue ||this.jobCategoryValue.length === 0 ||
+            !this.jobCategoryValue ||
+            this.jobCategoryValue.length === 0 ||
             (this.jobCategoryValue.length > 0 &&
               this.jobCategoryValue.flat().indexOf(job.jobCategory.id) >= 0)
         )
         .filter(
           job =>
-            !this.locationValue ||this.locationValue.length === 0 ||
+            !this.locationValue ||
+            this.locationValue.length === 0 ||
             (this.locationValue.length > 0 &&
               this.locationValue.flat().indexOf(job.location.id) >= 0)
         )
         .filter(
           job =>
-            !this.departmentValue ||this.departmentValue.length === 0 ||
+            !this.departmentValue ||
+            this.departmentValue.length === 0 ||
             (this.departmentValue.length > 0 &&
               this.departmentValue.flat().indexOf(job.department.id) >= 0)
         );
+    },
+    handlePostPositionButtonClick() {},
+    async handlePostPositionCommit() {
+      const axios = require("axios");
+      await axios
+        .post(
+          this.constant.data().positionBaseUrl + "/position/job-info",
+          null,
+          {
+            params: {
+              title: this.newPositionForm.title,
+              description: this.newPositionForm.desc,
+              workYearId: Number.parseInt(this.newPositionForm.workYearId[0]),
+              degreeId: Number.parseInt(this.newPositionForm.degreeId[0]),
+              departmentId: Number.parseInt(
+                this.newPositionForm.departmentId[0]
+              ),
+              locationId: Number.parseInt(this.newPositionForm.locationId[0]),
+              jobCategoryId: Number.parseInt(
+                this.newPositionForm.jobCategoryId[0]
+              )
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+          this.$message({
+            showClose: true,
+            message: "发送成功",
+            type: "success"
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          this.$message({
+            showClose: true,
+            message: "发送失败",
+            type: "error"
+          });
+        });
     }
   }
 };
@@ -357,5 +507,9 @@ export default {
 
 .position-list-item:hover .title {
   color: #996b0f;
+}
+
+.el-form-item__content {
+  text-align: left;
 }
 </style>
