@@ -130,7 +130,9 @@
       <div class="description">{{ dialogItem.description }}</div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">关闭</el-button>
-        <el-button type="primary">投递简历</el-button>
+        <el-button type="primary" @click="onApplyButtonClick"
+          >投递简历</el-button
+        >
       </span>
     </el-dialog>
 
@@ -468,6 +470,11 @@ export default {
             type: "error"
           });
         });
+    },
+    async onApplyButtonClick() {
+      localStorage.setItem("jobId", this.dialogItem.id);
+      localStorage.setItem("jobName", this.dialogItem.title);
+      await this.$router.push({ path: "/user/upload-resume" });
     }
   }
 };
