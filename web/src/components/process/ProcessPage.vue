@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header>
-      <!-- 这里放主导航栏 -->
+      <NavBar></NavBar>
     </el-header>
 
     <el-main>
@@ -58,11 +58,13 @@
 
 <script>
 import MainStatus from './pageComponents/MainStatus'
+import NavBar from '../common/NavBar'
 
 export default {
   name: 'ProcessPage',
   components: {
-    MainStatus
+    MainStatus,
+    NavBar
   }
 }
 </script>
