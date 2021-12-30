@@ -27,7 +27,14 @@
       </div>
     </el-dialog>
 
-    <div v-show="statusData.resumeStatus === 'hired'">
+    <div v-show="statusData.offerStatus === 'waiting'">
+      <p align="left" style="margin-left: 10%">
+        <br>
+        恭喜您，已完成面试！请等待面试结果。
+      </p>
+    </div>
+
+    <div v-show="statusData.offerStatus === 'hired'">
       <p align="left" style="margin-left: 10%">
         <br>
         恭喜您，已通过面试！我们很期待未来与您共事。
@@ -82,7 +89,7 @@ export default {
       await axios.post(
         this.constant.data().processBaseUrl + '/hr/update_offerStatus', null, {
           params: {
-            id: this.cookieutils.cookieMethods.getTargetId(),
+            id: this.cookieutils.cookieMethods.getTargetId(this.identity),
             resumeId: this.cookieutils.cookieMethods.getTargetResumeId(),
             offerStatus: this.formData.tmpSta
           }

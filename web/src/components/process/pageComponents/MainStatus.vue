@@ -96,13 +96,14 @@ export default {
       await axios.post(
         this.constant.data().processBaseUrl + '/hr/update_status', null, {
           params: {
-            id: this.cookieutils.cookieMethods.getTargetId(),
+            id: this.cookieutils.cookieMethods.getTargetId(this.identity),
             resumeId: this.cookieutils.cookieMethods.getTargetResumeId(),
             status: this.formData.tmpSta
           }
         }
       ).then(
         (res) => {
+          console.log(res)
           if (res.data.code !== 0) {
             this.$message({
               showClose: true,
@@ -122,6 +123,7 @@ export default {
         }
       ).catch(
         (err) => {
+          console.log(err)
           this.$message({
             showClose: true,
             message: '修改失败',
