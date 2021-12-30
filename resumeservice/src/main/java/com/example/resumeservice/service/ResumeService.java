@@ -1,10 +1,15 @@
 package com.example.resumeservice.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.resumeservice.dao.ResumeRepository;
 import com.example.resumeservice.entity.Resume;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
 
 @Service
 public class ResumeService {
@@ -13,19 +18,61 @@ public class ResumeService {
     @Autowired
     public ResumeService(ResumeRepository resumeRepository) { this.resumeRepository = resumeRepository;}
 
-    public JSONObject update_resumeContent(String id, String resumeId, byte[] resumeContent){
+    public JSONObject add_resume_name(String resumeName, String id, String resumeId){
         JSONObject obj = new JSONObject();
 
-        int code = resumeRepository.update_resumeContent(id, resumeId, resumeContent);
+        int code = resumeRepository.update_resumeName(resumeName, id, Integer.parseInt(resumeId));
 
-        byte[] updated = resumeRepository.get_resumeContent(id, resumeId);
-
-        obj.put("id", id);
-        obj.put("resumeId", resumeId);
-        obj.put("resumeContent", updated);
-        obj.put("code", code);
+        obj.put("resumeName", resumeName);
+        obj.put("id",id);
 
         return obj;
+    }
+
+    public JSONArray get_personal_center_data(String id){
+        JSONArray arr = new JSONArray();
+
+        ArrayList<Resume> res = resumeRepository.get_personal_center_data(id);
+
+        if (res == null)
+            return arr;
+
+        for (int i = 0; i < res.size(); i ++) {
+            Resume tmp = res.get(i);
+            JSONObject obj = new JSONObject();
+
+            obj.put("resumeId", tmp.getResumeId());
+            obj.put("resumeName", tmp.getResumeName());
+            obj.put("jobName", tmp.getJobName());
+
+            arr.add(obj);
+        }
+
+        return arr;
+    }
+
+    public JSONArray get_hr_personal_center_data(){
+        JSONArray arr = new JSONArray();
+        ArrayList<Resume> res = resumeRepository.get_hr_personal_center_data();
+
+        if (res == null)
+            return arr;
+
+        for (int i = 0; i < res.size(); i ++)
+            for (int j = i + 1; j < res.size(); j ++) {
+                if (Objects.equals(res.get(i).getId(), res.get(j).getId())) {
+                    res.remove(res.get(j));
+                }
+            }
+
+        for (int i = 0; i < res.size();i++){
+            JSONObject obj = new JSONObject();
+            obj.put("id",res.get(i).getId());
+            obj.put("name",res.get(i).getName());
+            arr.add(obj);
+        }
+        return arr;
+
     }
 
     public JSONObject add_resume(String id, byte[] resumeContent, String jobId){

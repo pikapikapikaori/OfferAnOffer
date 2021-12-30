@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Resume {
     @Id
     @Column
-    private String resumeId;
+    private int resumeId;
 
     @Column
     private String id;
@@ -24,5 +24,16 @@ public class Resume {
 
     @Column
     private String jobId;
+
+    @Column
+    private String resumeName;
+
+    @Column
+    private String jobName;
+
+    @Column
+    private String name;
+
+
 
 }

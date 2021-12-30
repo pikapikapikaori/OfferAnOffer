@@ -24,11 +24,24 @@ public interface ResumeRepository extends JpaRepository<Resume, String> {
     @Query("select r from Resume r where r.id = :id and r.jobId = :jobId")
     Resume get_resume(@Param("id") String id, @Param("jobId") String jobId);
 
+    @Query("select r from Resume r where r.id = :id")
+    ArrayList<Resume> get_personal_center_data(@Param("id") String id);
+
+    @Query("select r from Resume r")
+    ArrayList<Resume> get_hr_personal_center_data();
+
+
 
     //上传简历
     @Transactional
     @Modifying
     @Query("update Resume r set r.resumeContent = :resumeContent where r.id = :id and r.resumeId = :resumeId ")
     int update_resumeContent(@Param("id") String id, @Param("resumeId") String resumeId, @Param("resumeContent") byte[] resumeContent);
+
+    //上传简历名称
+    @Transactional
+    @Modifying
+    @Query("update Resume r set r.resumeName = :resumeName where r.id = :id and r.resumeId = :resumeId")
+    int update_resumeName(@Param("resumeName") String resumeName, @Param("id") String id, @Param("resumeId") int resumeId);
 
 }
