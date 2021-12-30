@@ -1,4 +1,4 @@
-package com.oaoffer.processservice.Constant;
+package com.oaoffer.processservice.constant;
 
 import org.springframework.stereotype.Component;
 

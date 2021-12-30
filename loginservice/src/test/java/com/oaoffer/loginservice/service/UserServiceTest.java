@@ -18,7 +18,7 @@ class UserServiceTest {
     @Test
     void have_register() {
         JSONObject res = userService.register("test@test.com", "test");
-        assertEquals(0, res.getInteger("code"));
+        assertEquals(1, res.getInteger("code"));
     }
 
     @Test

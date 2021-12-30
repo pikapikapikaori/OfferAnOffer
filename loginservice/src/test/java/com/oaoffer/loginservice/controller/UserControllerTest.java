@@ -61,6 +61,23 @@ class UserControllerTest {
         JSONObject res = JSON.parseObject(resstr);
 
         System.out.println(res);
-        assertEquals(1, res.getInteger("code"));
+        assertEquals(0, res.getInteger("code"));
+    }
+
+    @Test
+    void login() throws Exception {
+        String resstr = mockMvc.perform(
+                        get("/auth/login")
+                                .param("email", "testlogin@test.com")
+                                .param("identity", "test")
+                )
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn().getResponse().getContentAsString();
+
+        JSONObject res = JSON.parseObject(resstr);
+
+        System.out.println(res);
+        assertEquals(0, res.getInteger("code"));
     }
 }

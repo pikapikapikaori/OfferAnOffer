@@ -14,8 +14,8 @@ class UserRepositoryTest {
 
     @Test
     public void get_have_user_test() {
-        User res = userRepository.get_user("test@test.com", "test");
-        assertEquals("test@test.com", res.getEmail());
+        User res = userRepository.get_user("admin@admin.com", "admin");
+        assertEquals("admin@admin.com", res.getEmail());
     }
 
     @Test
