@@ -1,18 +1,16 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header height="10%">
       <NavBar></NavBar>
     </el-header>
 
     <el-main>
       <el-container>
-        <el-header>
-          <h1>
-            这里放个人中心的header
-          </h1>
-        </el-header>
 
         <el-main>
+          <el-row>
+            <PersonalCenterHeader></PersonalCenterHeader>
+          </el-row>
           <el-row>
             <el-col
               :xs="24"
@@ -22,7 +20,7 @@
               :xl="4"
             >
               <div>
-                这里放个人中心的左侧导航栏
+                <PersonalCenterNavi></PersonalCenterNavi>
               </div>
             </el-col>
             <el-col
@@ -42,7 +40,7 @@
               :lg="4"
               :xl="4">
               <div>
-                这里放申请的职位信息
+                <br>
               </div>
             </el-col>
           </el-row>
@@ -58,12 +56,16 @@
 
 <script>
 import MainStatus from './pageComponents/MainStatus'
+import PersonalCenterNavi from '../resume/userResume/PersonalCenterNavi'
+import PersonalCenterHeader from '../resume/userResume/PersonalCenterHeader'
 import NavBar from '../common/NavBar'
 
 export default {
   name: 'ProcessPage',
   components: {
     MainStatus,
+    PersonalCenterNavi,
+    PersonalCenterHeader,
     NavBar
   }
 }

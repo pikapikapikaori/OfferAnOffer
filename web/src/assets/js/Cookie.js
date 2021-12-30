@@ -9,7 +9,7 @@ export default {
     },
     // 返回要查看的简历的id，应该是存储在sessionStorage中
     getTargetResumeId () {
-      return '1'
+      return localStorage.getItem("targetResumeId")
     },
     // 返回当前登录中用户的身份
     async getCurrentIdentity (id) {
@@ -30,7 +30,7 @@ export default {
     getTargetId (identity) {
       if (identity === 'hr') {
         // 返回HR所要查看的申请者的id，存储在sessionStorage中
-        return '9'
+        return localStorage.getItem("targetId")
       } else {
         return this.getCurrentId()
       }
