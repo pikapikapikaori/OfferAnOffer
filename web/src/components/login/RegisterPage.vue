@@ -96,8 +96,8 @@ export default {
 
           if (this.targetInfo.code === 1) {
             this.logining = false
-            this.cookieopera.cookieOperations.setCookie(this.targetInfo.id, this.targetInfo.email, this.targetInfo.password, 1)
-            await this.$router.push({path: '/'})
+            this.cookieopera.cookieOperations.setCookie(this.targetInfo.id, this.targetInfo.email, this.targetInfo.password, 1, this.targetInfo.identity)
+            await this.$router.push({path: '/user/personalcenter'})
           } else {
             this.logining = false
             this.$notify.error({
